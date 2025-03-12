@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - DZAKI TRISTANTO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .detail-profil {
+            font-weight: normal;
+            color: #bdbdbd;
+            text-align: justify;
+        }
+
+        /* Animasi slide-in-blurred-right */
+        .slide-in-blurred-right {
+            opacity: 0;
+        }
+
+        .slide-in-blurred-right.show {
+            -webkit-animation: slide-in-blurred-right 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+            animation: slide-in-blurred-right 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+        }
+
+        @keyframes slide-in-blurred-right {
+            0% {
+                transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+                filter: blur(40px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) scaleX(1) scaleY(1);
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+
+        .swirl-in-fwd {
+            opacity: 0;
+        }
+
+        .swirl-in-fwd.show {
+            animation: swirl-in-fwd 0.6s ease-out both;
+        }
+
+        @keyframes swirl-in-fwd {
+            0% {
+                transform: rotate(-540deg) scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: rotate(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Animasi slide-in-fwd-center */
+        .slide-in-fwd-center {
+            opacity: 0;
+        }
+
+        .slide-in-fwd-center.show {
+            animation: slide-in-fwd-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @keyframes slide-in-fwd-center {
+            0% {
+                transform: translateZ(-1400px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateZ(0);
+                opacity: 1;
+            }
+        }
+
+        /* Efek fade-in hanya untuk konten */
+        .fade-in,
+        .fade-in-left,
+        .fade-in-right {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.show,
+        .fade-in-left.show,
+        .fade-in-right.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            transform: translateX(-30px);
+            transition: opacity 0.3s ease-out, transform 5s ease-out;
+        }
+
+
+        .fade-in-right {
+            transform: translateX(30px);
+            transition: opacity 0.3s ease-out, transform 5s ease-out;
+        }
+
+        /* Efek tooltips */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            white-space: nowrap;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 6px;
+            position: absolute;
+            right: 120%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Typewriter effect */
+        .typewriter h2 {
+            opacity: 0;
+            color: #fff;
+            font-family: monospace;
+            overflow: hidden;
+            /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange;
+            /* The typewriter cursor */
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em;
+            /* Adjust as needed */
+            font-size: 2rem;
+            /* Increase font size */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            animation:
+                typing 3.5s steps(30, end),
+                blink-caret .5s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        .typewriter.show h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .c-button {
+            color: #000000;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 0.9em 1.6em;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+        }
+
+        .c-button--gooey {
+            color: #5eead4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 4px solid #5eead4;
+            border-radius: 3px;
+            position: relative;
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs {
+            height: 100%;
+            filter: url(#goo);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: -3px;
+            right: -1px;
+            z-index: -1;
+        }
+
+        .c-button--gooey .c-button__blobs div {
+            background-color: #5eead4;
+            width: 34%;
+            height: 100%;
+            border-radius: 100%;
+            position: absolute;
+            transform: scale(1.4) translateY(125%) translateZ(0);
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs div:nthnth-child(1) {
+            left: -5%;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(2) {
+            left: 30%;
+            transition-delay: 60ms;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(3) {
+            left: 66%;
+            transition-delay: 25ms;
+        }
+
+        .c-button--gooey:hover {
+            color: #000000;
+        }
+
+        .c-button--gooey:hover .c-button__blobs div {
+            transform: scale(1.4) translateY(0) translateZ(0);
+        }
+
+        .shake-lr {
+            -webkit-animation: shake-lr 0.7s cubic-bezier(0.455, 0.030, 0.515, 0.955) 5000ms both;
+            animation: shake-lr 0.7s cubic-bezier(0.455, 0.030, 0.515, 0.955) 5000ms both;
+        }
+
+        @-webkit-keyframes shake-lr {
+
+            0%,
+            100% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+            }
+
+            10% {
+                -webkit-transform: rotate(8deg);
+                transform: rotate(8deg);
+            }
+
+            20%,
+            40%,
+            60% {
+                -webkit-transform: rotate(-10deg);
+                transform: rotate(-10deg);
+            }
+
+            30%,
+            50%,
+            70% {
+                -webkit-transform: rotate(10deg);
+                transform: rotate(10deg);
+            }
+
+            80% {
+                -webkit-transform: rotate(-8deg);
+                transform: rotate(-8deg);
+            }
+
+            90% {
+                -webkit-transform: rotate(8deg);
+                transform: rotate(8deg);
+            }
+        }
+
+        @keyframes shake-lr {
+
+            0%,
+            100% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+            }
+
+            10% {
+                -webkit-transform: rotate(8deg);
+                transform: rotate(8deg);
+            }
+
+            20%,
+            40%,
+            60% {
+                -webkit-transform: rotate(-10deg);
+                transform: rotate(-10deg);
+            }
+
+            30%,
+            50%,
+            70% {
+                -webkit-transform: rotate(10deg);
+                transform: rotate(10deg);
+            }
+
+            80% {
+                -webkit-transform: rotate(-8deg);
+                transform: rotate(-8deg);
+            }
+
+            90% {
+                -webkit-transform: rotate(8deg);
+                transform: rotate(8deg);
+            }
+        }
+
+        #about {
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            /* Ganti dengan gambar sesuai tema */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Efek Parallax */
+
+        }
+
+        #about::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.871);
+            /* Overlay lebih gelap */
+            z-index: 1;
+        }
+
+        #about .content-about {
+            position: relative;
+            z-index: 2;
+            /* Agar konten tetap di atas overlay */
+            color: white;
+            /* Pastikan teks tetap kontras */
+        }
+
+        #about .content-about-img {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-container {
+            width: 300px;
+            height: 350px;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.784);
+            overflow: hidden;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+        }
+
+        .card .front-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
+        }
+
+        .card .front-content p {
+            font-size: 10px;
+            font-weight: 700;
+            opacity: 1;
+            background: linear-gradient(310deg, rgba(166, 237, 230, 1) 0%, rgba(146, 207, 209, 1) 54%, rgba(0, 212, 255, 1) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
+        }
+
+        .card .content1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+            background: linear-gradient(310deg, rgba(166, 237, 230, 1) 0%, rgba(146, 207, 209, 1) 54%, rgba(0, 212, 255, 1) 100%);
+            color: #000000;
+            padding: 20px;
+            line-height: 1.5;
+            border-radius: 5px;
+            pointer-events: none;
+            transform: translateY(-96%);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .card .content1 .heading {
+            font-size: 15px;
+            font-weight: 700;
+            color: #000000;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+
+        .periode {
+            font-size: 10px;
+            color: #000000;
+            margin-top: -8px;
+        }
+
+        .card .content1 .custom-list {
+            font-size: 10px;
+            font-weight: 500;
+            color: #000000;
+            text-align: justify;
+        }
+
+        .card:hover .content1 {
+            transform: translateY(0);
+        }
+
+        .card:hover .front-content {
+            transform: translateY(30%);
+        }
+
+        .card:hover .front-content p {
+            opacity: 0;
+        }
+
+        .containerport {
+            display: flex;
+            width: 100%;
+            padding: 4% 2%;
+            box-sizing: border-box;
+            height: 100vh;
+        }
+
+        .box {
+            flex: 1;
+            overflow: hidden;
+            transition: .5s;
+            margin: 0 2%;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
+            line-height: 0;
+        }
+
+        .box>img {
+            width: 200%;
+            height: calc(100% - 10vh);
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .box>span {
+            font-size: 2vh;
+            display: block;
+            text-align: center;
+            height: 10vh;
+            line-height: 2.6;
+        }
+
+        .box:hover {
+            flex: 1 1 50%;
+        }
+
+        .box:hover>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .form-container {
+            width: 400px;
+            background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%, #1cd5ff, #00cdc9) border-box;
+            border: 2px solid transparent;
+            padding: 32px 24px;
+            font-size: 14px;
+            font-family: inherit;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-sizing: border-box;
+            border-radius: 16px;
+        }
+
+        .form-container button:active {
+            scale: 0.95;
+        }
+
+        .form-container .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-container .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .form-container .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #717171;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .form-container .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+            background-color: transparent;
+            border: 1px solid #414141;
+        }
+
+        .form-container .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            resize: none;
+            color: #fff;
+            height: 96px;
+            border: 1px solid #414141;
+            background-color: transparent;
+            font-family: inherit;
+        }
+
+        .form-container .form-group input::placeholder {
+            opacity: 0.5;
+        }
+
+        .form-container .form-group input:focus {
+            outline: none;
+            border-color: #1cfffb;
+        }
+
+        .form-container .form-group textarea:focus {
+            outline: none;
+            border-color: #1cf4ff;
+        }
+
+        .form-container .form-submit-btn {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            align-self: flex-start;
+            font-family: inherit;
+            color: #e9e9e9;
+            font-weight: 600;
+            width: 40%;
+            background: #313131;
+            border: 1px solid #414141;
+            padding: 12px 16px;
+            font-size: inherit;
+            gap: 8px;
+            margin-top: 8px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .form-container .form-submit-btn:hover {
+            background-color: #5eead4;
+            border-color: #5eead4;
+            color: #1B1B1B;
+        }
+
+        #home {
+
+            background-color: #1B1B1B;
+        }
+
+        #about {
+            background-color: #2D2D2D;
+        }
+
+        #experience {
+            background-color: #1B1B1B;
+        }
+
+        #portfolio {
+            background-color: #1B1B1B;
+        }
+
+        #contact {
+            background-color: #000000;
+        }
+
+        .img-home {
+            opacity: 50%;
+            padding-bottom: 50px;
+        }
+
+        ul.custom-list {
+            list-style-type: square;
+            /* Mengubah bullet point menjadi kotak */
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            background-color: #1B1B1B;
+            color: white;
+        }
+
+        /* Fading line effect */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #fff, transparent);
+        }
+
+        /* Text inside footer */
+        footer p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        #scrollUpBtn {
+            display: none;
+            /* Sembunyikan dulu */
+            margin-top: 20px;
+            padding: 10px;
+            background: #ffffff;
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #scrollUpBtn:hover {
+            background: #00fbe2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigasi di sisi kanan -->
+    <nav
+        class="fixed top-0 right-0 h-full w-16 bg-[#2D2D2D] z-40 flex flex-col items-center py-10 space-y-6 bg-opacity-90">
+        <div class="text-xs font-bold text-white">DZT</div>
+        <div class="tooltip">
+            <a class="hover:text-teal-400 transition-colors text-white" href="#home">
+                <i class="fas fa-home text-xl"></i>
+            </a>
+            <span class="tooltiptext">Home</span>
+        </div>
+        <div class="tooltip">
+            <a class="hover:text-teal-400 transition-colors text-white" href="#about">
+                <i class="fas fa-user text-xl"></i>
+            </a>
+            <span class="tooltiptext">About</span>
+        </div>
+        <div class="tooltip">
+            <a class="hover:text-teal-400 transition-colors text-white" href="#experience">
+                <i class="fas fa-briefcase text-xl"></i>
+            </a>
+            <span class="tooltiptext">Experience</span>
+        </div>
+        <div class="tooltip">
+            <a class="hover:text-teal-400 transition-colors text-white" href="#skills">
+                <i class="fas fa-cogs text-xl"></i>
+            </a>
+            <span class="tooltiptext">Skills</span>
+        </div>
+        <div class="tooltip">
+            <a class="hover:text-teal-400 transition-colors text-white" href="#portfolio">
+                <i class="fas fa-briefcase text-xl"></i>
+            </a>
+            <span class="tooltiptext">Portfolio</span>
+        </div>
+        <div class="tooltip">
+            <a class="hover:text-teal-400 transition-colors text-white" href="#contact">
+                <i class="fas fa-envelope text-xl"></i>
+            </a>
+            <span class="tooltiptext">Contact</span>
+        </div>
+        <!-- <div class="tooltip mt-auto">
+            <a class="hover:text-teal-400 transition-colors text-white" href="https://wa.me/6285156619173"
+                target="_blank">
+                <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+            <span class="tooltiptext">WhatsApp</span>
+        </div> -->
+        <div>
+            <button id="scrollUpBtn" onclick="scrollToTop()">↑</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex flex-col md:flex-row items-center min-h-screen mt-[-4rem] pt-16 pr-20 z-40" id="home">
+        <div class="flex flex-col items-start p-6 md:w-1/2 md:p-20 space-y-4">
+            <div class="typewriter">
+                <h2 class="text-sm font-light tracking-widest" style="letter-spacing: 0.1em;">HI!!, I'M DZAKI TRISTANTO
+                </h2>
+            </div>
+            <h3 class="text-5xl font-bold leading-tight slide-in-blurred-right">
+                <span class="bg-teal-400 text-gray-900 px-2">A</span>
+                <br />
+                <span class="bg-teal-400 text-gray-900 px-2">TESTER</span>
+                <br />
+                <span class="bg-teal-400 text-gray-900 px-2">QUALITY</span>
+                <br />
+                <span style="color: #fff">ASSURANCE</span>
+            </h3>
+            <p class="text-gray-400 text-xs italic fade-in-left">
+                Experienced in manual testing within the banking industry for over 3 years. Detail-oriented, systematic,
+                and passionate about graphic design.
+            </p>
+            <a href="https://drive.google.com/file/d/1fFGk1hU9WL1ao7pKV_r3c8NbNWO4dNij/view?usp=sharing"
+                target="_blank">
+                <button class="c-button c-button--gooey shake-lr fade-in">
+                    Download CV <span class="c-button__blobs">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </span>
+                </button>
+            </a>
+            <div class="flex items-center space-x-4 mt-4 fade-in">
+                <span class="text-white">Follow me on:</span>
+                <a class="text-gray-400 hover:text-teal-400 transition-colors fade-in"
+                    href="https://www.linkedin.com/in/dzakii-tristanto-730570154/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a class="text-gray-400 hover:text-teal-400 transition-colors fade-in"
+                    href="https://github.com/dzakitristanto" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a class="text-gray-400 hover:text-teal-400 transition-colors fade-in"
+                    href="https://www.instagram.com/dzakitristanto/?next=%2F" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a class="text-gray-400 hover:text-teal-400 transition-colors fade-in"
+                    href="https://www.behance.net/dzaki27" target="_blank">
+                    <i class="fab fa-behance"></i>
+                </a>
+            </div>
+        </div>
+        <div class="md:w-1/2 fade-in-right flex justify-end mt-6 md:mt-0">
+            <img alt="Portrait of Dzaki Tristanto in a professional setting"
+                class="w-3/4 h-auto transform scale-110 transition-transform img-home" src="\CV_V2\asset\Untitled-3.png" />
+        </div>
+    </main>
+
+    <!-- about Section -->
+    <section class="min-h-screen flex flex-col md:flex-row items-center justify-center p-6 md:p-20" id="about">
+        <div class="md:w-1/4 p-6 content-about-img swirl-in-fwd">
+            <img alt="Decorative image for the About Me section" class="w-full h-auto rounded-lg " height="400"
+                src="\CV_V2\asset\ava.jpg" width="300" />
+        </div>
+        <div class="md:w-3/4 p-6 fade-in content-about">
+            <h2 class="text-4xl font-bold mb-6">About Me</h2>
+            <p class="text-xs mb-3 detail-profil">
+                I am an Informatics Engineering graduate with over three years of experience as a Manual Quality
+                Assurance Tester in the banking industry.
+                I have expertise in test planning, test case creation, and execution, as well as skills in identifying,
+                nalyzing, and reporting bugs to ensure system quality and reliability.
+                I am familiar with testing methodologies such as System Integration Testing (SIT), Functional Testing,
+                Regression Testing,
+                and User Acceptance Testing (UAT). Additionally, I have a basic understanding of API testing using
+                Postman and test documentation with tools like JIRA.
+            </p>
+            <p class="text-xs mb-3 detail-profil">
+                I am always eager to learn and adapt to new technologies. In my role as a QA Tester,
+                I continuously develop my skills to keep up with technological trends, testing methodologies,
+                and the latest tools that enhance testing efficiency. With a strong passion for continuous learning,
+                I strive to contribute my best efforts in ensuring software quality.
+            </p>
+            <p class="text-xs detail-profil">
+                Besides my career in QA, I am also a freelance graphic designer working on various projects such as
+                vector art, vexel, caricatures,
+                banners, and more. My interest in graphic design stems from my educational background in Visual
+                Communication Design at vocational school,
+                which shaped my understanding of aesthetics and creativity in design.
+            </p>
+        </div>
+    </section>
+
+    <!-- experience Section -->
+    <section class="min-h-screenflex flex-col items-center justify-center p-6 md:p-20 " id="experience"
+        data-offset="-20">
+        <h2 class="text-4xl font-bold mb-6">Experience</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="card-container flex  m-4 fade-in-left">
+                <div class="card">
+                    <div class="front-content">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg">
+                    </div>
+                    <div class="content1">
+                        <p class="heading">Job Desk</p>
+                        <p class="italic periode">May 2021 - Current</p>
+                        <ul class="custom-list">
+                            <li>Create Test Script for testing based on functional specification.</li>
+                            <li>Execute Test case on SIT/UAT and Regression Environments (Manual Testing) and create
+                                document the result of testing</li>
+                            <li>Analyze bugs and errors during tests.</li>
+                            <li>Raise Defect and Report testing with JIRA</li>
+                            <li>Searching Data using DBeaver</li>
+                        </ul>
+                        <p class="custom-list italic"><span class="font-bold">projects that have been handled</span>
+                            : Hygiene Paylater (current project), Enhancement Spectre Retail, SR account incharge
+                            SGP,Patch version DB Paylater KPR KSM,
+                            Production Issues Spectre KSM, SR Decision Engine and Datamart Collection CC KPR KSM and
+                            SME, Hygiene Spectre CC, Mobile Collection,
+                            WFMS, KSM, Arttha, Manpin, Collection Paylater </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container m-4 fade-in">
+                <div class="card">
+                    <div class="front-content">
+                        <img src="\CV_V2\asset\PT. Adi Data Informatika.png">
+                    </div>
+                    <div class="content1">
+                        <p class="heading">Job Desk</p>
+                        <p class="italic periode">May 2021 - Current</p>
+                        <ul class="custom-list">
+                            <li>Assigned as a Quality Assurance personnel at Bank Mandiri to perform tasks related to
+                                Quality Assurance in accordance with the needs of Bank Mandiri.</li>
+                            <li>Create a time-sheet and work reports that must be submitted to Bank Mandiri.</li>
+                            <li>All tasks must be performed based on the scope of work defined by Bank Mandiri,
+                                including completing and submitting the work results within the time frame set by Bank
+                                Mandiri.</li>
+                            <li>Must follow any work instructions or directives from AdiData related to the work at Bank
+                                Mandiri.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container m-4 fade-in-right">
+                <div class="card">
+                    <div class="front-content">
+                        <img src="\CV_V2\asset\logo-erlangga-png.png">
+                    </div>
+                    <div class="content1">
+                        <p class="heading">Job Desk</p>
+                        <p class="italic periode">May 2019 - January 2020</p>
+                        <ul class="custom-list">
+                            <li>Receive files (Delivery Orders) that have been checked by the Warehouse admin</li>
+                            <li>Checking the completeness of the file (Delivery Order)</li>
+                            <li>Entry data (Delivery Order) into the system and check whether it matches the existing
+                                order</li>
+                            <li>Posting files (Delivery Order) that are complete to the system</li>
+                            <li>Print files (Delivery Orders) that have been posted to be used as invoices</li>
+                            <li>Sign invoices that have been printed and unite with the file</li>
+                            <li>Make daily sales report</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center p-6 md:p-20 bg-black " id="skills"
+        data-offset="-50">
+        <h2 class="text-4xl font-bold mb-6">Skills</h2>
+        <div class="grid grid-cols-2 grid grid-cols-4 gap-4">
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-left">
+                <i class="fa-solid fa-gears text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">API Testing</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 40%;">
+                        40%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-left">
+                <i class="fas fa-bug text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">Manual Testing</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 95%;">
+                        95%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-left">
+                <i class="fas fa-database text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">SQL</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 70%;">
+                        70%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-left">
+                <i class="fas fa-tools text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">JIRA</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 80%;">
+                        80%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in">
+                <i class="fa-brands fa-microsoft text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">MS Office</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 90%;">
+                        90%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in">
+                <i class="fas fa-project-diagram text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">Agile & Waterfall</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 80%;">
+                        80%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in">
+                <i class="fab fa-figma text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">FIGMA</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in">
+                <i class="fab fa-html5 text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">CSS & HTML</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-right">
+                <i class="fas fa-paint-brush text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">Corel Draw</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 90%;">
+                        90%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-right">
+                <i class="fa-solid fa-pen-nib text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">Adobe (PS, AI)</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 95%;">
+                        95%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-right">
+                <i class="fas fa-video text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">Editing</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 75%;">
+                        75%
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#2D2D2D] p-6 rounded-lg shadow-lg text-center fade-in-right">
+                <i class="fas fa-credit-card text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-xl font-bold">ICS & BDS (payment)</h3>
+                <div class="w-50 bg-gray-300 rounded-full overflow-hidden mt-4">
+                    <div class="h-3 bg-teal-400 text-gray-900 text-xs font-bold text-center leading-3"
+                        style="width: 50%;">
+                        50%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center p-6 md:p-20 bg-[#2D2D2D]" id="portfolio"
+        data-offset="-50">
+        <h2 class="text-4xl font-bold mb-6">Portfolio</h2>
+        <div class="containerport fade-in">
+            <div class="box">
+                <img src="\CV_V2\asset\baruuuu.jpg">
+                <span>LOGO</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\logo badak.jpg">
+                <span>LOGO</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\logo king.jpg">
+                <span>LOGO</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\product.jpg">
+                <span>PRODUCT</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\LABEL 2.jpg">
+                <span>LABEL</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\mobil.jpg">
+                <span>VECTOR</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\graduation tia.jpg">
+                <span>VECTOR</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\aom.jpg">
+                <span>WPAP</span>
+            </div>
+            <div class="box">
+                <img src="\CV_V2\asset\logo sentosa mockup.jpg">
+                <span>LOGO</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact Section -->
+    <section id="contact" class=" py-12 ">
+        <div class="max-w-4xl mx-auto px-6 ">
+            <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Me</h2>
+            <p class="text-center mb-8 fade-in">
+                Feel free to reach out to me for any inquiries or collaboration.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Contact Info -->
+                <div class="flex-1 space-y-4 fade-in-left">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-envelope text-teal-400 text-xl"></i>
+                        <a href="mailto:dzaki.tristanto@gmail.com"
+                            class=" hover:text-teal-400">dzaki.tristanto@gmail.com</a>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-phone text-teal-400 text-xl"></i>
+                        <a href="tel:+6285156619173" class=" hover:text-teal-400">+6285156619173</a>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-map-marker-alt text-teal-400 text-xl"></i>
+                        <span class="city">East Jakarta, Indonesia</span>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <div class="flex-1 p-6 form-container fade-in-right">
+                    <form action="https://formspree.io/f/myzeyjgr" method="POST">
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="text" id="email" name="email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="textarea">How Can We Help You?</label>
+                            <textarea name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
+                        </div>
+                        <button class="form-submit-btn" type="submit">Submit</button>
+                    </form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer Section -->
+    <footer>
+        <div>
+            <p class="text-sm">&copy; 2025 Dzaki Tristanto - Keep learning, keep growing, keep evolving</p>
+        </div>
+    </footer>
+    <!-- <footer class="w-full bg-black text-white">
+        <div class="border-t border-gray-600 py-4 flex flex-col items-center text-center px-6">
+            <p class="text-sm">&copy; 2025 Dzaki Tristanto. All Rights Reserved.</p>
+        </div>
+    </footer> -->
+
+
+    <script>
+        // Efek fade-in saat scroll
+        // const fadeElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .typewriter');
+
+        // const observer = new IntersectionObserver(entries => {
+        //     entries.forEach(entry => {
+        //         if (entry.isIntersecting) {
+        //             entry.target.classList.add('show');
+        //         } else {
+        //             entry.target.classList.remove('show');
+        //         }
+        //     });
+        // }, { threshold: 0.2 });
+
+        // fadeElements.forEach(el => observer.observe(el));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                } else {
+                    entry.target.classList.remove("show"); // Hapus agar animasi berjalan ulang
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(".fade-in, .fade-in-left, .fade-in-right, .typewriter, .slide-in-blurred-right, .swirl-in-fwd, .slide-in-fwd-center")
+            .forEach(el => observer.observe(el));
+
+        // Smooth scrolling
+        // document.querySelectorAll('nav a').forEach(anchor => {
+        //     anchor.addEventListener('click', function (e) {
+        //         e.preventDefault();
+        //         const targetId = this.getAttribute('href').substring(1);
+        //         document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        //         history.pushState(null, null, `#${targetId}`);
+        //     });
+        // });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute("href"));
+                if (!target) return;
+
+                // Cek apakah target punya data-offset
+                const offset = target.getAttribute("data-offset") ? parseInt(target.getAttribute("data-offset")) : 0;
+
+                const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        window.addEventListener("scroll", function () {
+            const aboutSection = document.getElementById("about");
+            let scrollPos = window.scrollY;
+            aboutSection.style.backgroundPositionY = `${scrollPos * 0.5}px`; // Menggerakkan background lebih lambat
+        });
+
+        window.addEventListener("pageshow", function () {
+            document.querySelectorAll("form").forEach(form => form.reset());
+        });
+
+        window.addEventListener("scroll", function () {
+            const scrollBtn = document.getElementById("scrollUpBtn");
+            if (window.scrollY > 3000) {
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.style.display = "none";
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+</body>
+
+</html>
