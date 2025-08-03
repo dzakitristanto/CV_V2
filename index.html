@@ -448,15 +448,18 @@
             text-align: justify;
         }
 
-        .card:hover .content1 {
-            transform: translateY(0);
-        }
+        /* --- PERBAIKAN CSS: Efek hover hanya untuk desktop --- */
+        @media (min-width: 769px) {
+            .card:hover .content1 {
+                transform: translateY(0);
+            }
 
-        .card:hover .front-content {
-            transform: translateY(-100%);
-            opacity: 0.5;
+            .card:hover .front-content {
+                transform: translateY(-100%);
+                opacity: 0.5;
+            }
         }
-
+        
         .containerport {
             display: flex;
             width: 100%;
@@ -1406,21 +1409,41 @@
             });
         }
         
-        // #### KODE JAVASCRIPT BARU UNTUK FLIP CARD ####
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cek lebar layar saat halaman dimuat
+        // #### KODE JAVASCRIPT BARU UNTUK FLIP CARD (DIPERBAIKI) ####
+        function setupFlipCards() {
+            const experienceCards = document.querySelectorAll('#experience .card');
+            
+            // Ini adalah fungsi yang akan dijalankan oleh event listener
+            const flipCardListener = function() {
+                this.classList.toggle('is-flipped');
+            };
+
             if (window.innerWidth <= 768) {
-                const experienceCards = document.querySelectorAll('#experience .card');
                 experienceCards.forEach(card => {
-                    card.addEventListener('click', function() {
-                        this.classList.toggle('is-flipped');
-                    });
+                    // Tambahkan listener HANYA jika belum ada, untuk mencegah duplikasi
+                    if (!card.hasFlipListener) {
+                        card.addEventListener('click', flipCardListener);
+                        card.hasFlipListener = true; // Tandai bahwa listener sudah ditambahkan
+                    }
+                });
+            } else {
+                // Jika layar lebih besar dari 768px, hapus semua efek flip
+                experienceCards.forEach(card => {
+                    card.classList.remove('is-flipped'); // Pastikan kartu kembali ke posisi semula
+                    if (card.hasFlipListener) {
+                        card.removeEventListener('click', flipCardListener);
+                        card.hasFlipListener = false; // Tandai bahwa listener sudah dihapus
+                    }
                 });
             }
-            // Optional: Tambahkan event listener untuk resize jika ingin logika ini dinamis
-            // saat ukuran window diubah tanpa me-reload halaman.
-        });
-        // #### AKHIR KODE JAVASCRIPT ####
+        }
+
+        // Jalankan fungsi saat halaman pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', setupFlipCards);
+
+        // Jalankan kembali fungsi setiap kali ukuran jendela browser diubah
+        window.addEventListener('resize', setupFlipCards);
+        // #### AKHIR KODE JAVASCRIPT BARU ####
     </script>
 
 </body>
